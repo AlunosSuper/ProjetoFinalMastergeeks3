@@ -1,0 +1,17 @@
+### Para usar este arquivo, instale a extensão "REST Client" no VS Code.
+### Depois clique em "Send Request" que aparece acima de cada requisição.
+
+@url = http://localhost:3001
+@chave = pixel123
+
+### A API está viva?
+GET {{url}}/saude
+
+### Todos os produtos
+GET {{url}}/produtos
+
+### Só as bebidas
+GET {{url}}/produtos?categoria=Bebidas
+
+### Um produto só
+GET {{url}}/produtos/1
