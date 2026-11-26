@@ -15,3 +15,72 @@ GET {{url}}/produtos?categoria=Bebidas
 
 ### Um produto só
 GET {{url}}/produtos/1
+
+### Enviar um pedido (o preço NÃO é enviado: o servidor descobre)
+POST {{url}}/pedidos
+Content-Type: application/json
+
+{
+  "nome": "Ana",
+  "mesa": 3,
+  "itens": [
+    { "id": "1", "qtd": 2 },
+    { "id": "5", "qtd": 1 }
+  ]
+}
+
+### Enviar um pedido com erros (nome vazio, mesa 99, sem itens)
+POST {{url}}/pedidos
+Content-Type: application/json
+
+{
+  "nome": "",
+  "mesa": 99,
+  "itens": []
+}
+
+### Teste de Estresse 1: Mesa inválida (número 99)
+POST {{url}}/pedidos
+Content-Type: application/json
+
+{
+  "nome": "Ana",
+  "mesa": 99,
+  "itens": [
+    { "id": "1", "qtd": 1 }
+  ]
+}
+
+### Teste de Estresse 3: Quantidade negativa (-1)
+POST {{url}}/pedidos
+Content-Type: application/json
+
+{
+  "nome": "Ana",
+  "mesa": 1,
+  "itens": [
+    { "id": "1", "qtd": -1 }
+  ]
+}
+
+### Cozinha: ver os pedidos (precisa da chave)
+GET {{url}}/pedidos
+x-chave: {{chave}}
+
+### Cozinha: ver só os pedidos "recebido"
+GET {{url}}/pedidos?status=recebido
+x-chave: {{chave}}
+
+### Cliente: acompanhar um pedido (troque o ID pelo que a API devolveu)
+GET {{url}}/pedidos/C6S8xHUHuSOBR9pRUraH
+
+
+### Cozinha: mudar o andamento do pedido
+PATCH {{url}}/pedidos/L4g4nbZ39ev7X9wUMz9B/status
+Content-Type: application/json
+x-chave: {{chave}}
+{ "status": "preparando" }
+
+### Cozinha: apagar um pedido
+DELETE {{url}}/pedidos/V7uj7VTU1fTNcj5S9Ql7
+x-chave: {{chave}}
