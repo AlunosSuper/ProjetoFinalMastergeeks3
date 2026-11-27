@@ -1,121 +1,158 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react'
+import Cardapio from './components/Cardapio'
+import Pedido from './components/Pedido'
+import { buscarProdutos } from './api'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [pagina, setPagina] = useState('cardapio') // 'cardapio' ou 'pedido'
+
+  // Os produtos agora vêm da API (e não mais do dados.js)
+  const [produtos, setProdutos] = useState([])
+  const [carregando, setCarregando] = useState(true)
+  const [erroProdutos, setErroProdutos] = useState('')
+
+  // O carrinho é uma lista de { id, qtd }. Começa com o que estiver salvo no navegador.
+  const [carrinho, setCarrinho] = useState(() => {
+    const salvo = localStorage.getItem('carrinho-pixel')
+    return salvo ? JSON.parse(salvo) : []
+  })
+  const [aviso, setAviso] = useState(null) // { id, texto } ou null
+
+  async function carregarProdutos() {
+    setCarregando(true)
+    setErroProdutos('')
+    try {
+      setProdutos(await buscarProdutos())
+    } catch (erro) {
+      setErroProdutos(erro.message)
+    } finally {
+      setCarregando(false)
+    }
+  }
+
+  // Busca os produtos uma única vez, quando a página abre
+  useEffect(() => {
+    carregarProdutos()
+  }, [])
+
+  // Sempre que o carrinho mudar, salva no navegador
+  useEffect(() => {
+    localStorage.setItem('carrinho-pixel', JSON.stringify(carrinho))
+  }, [carrinho])
+
+  // Quando os produtos chegarem, pré-carrega as imagens para a troca não "piscar"
+  useEffect(() => {
+    produtos.forEach((p) => {
+      const img = new Image()
+      img.src = p.imagem
+    })
+  }, [produtos])
+
+  function mostrarAviso(texto) {
+    const novo = { id: Date.now(), texto }
+    setAviso(novo)
+    // Some depois de 2 segundos, mas só se ainda for o MESMO aviso
+    setTimeout(() => setAviso((atual) => (atual && atual.id === novo.id ? null : atual)), 2000)
+  }
+
+  function adicionar(produto) {
+    const existe = carrinho.find((item) => item.id === produto.id)
+    if (existe) {
+      setCarrinho(carrinho.map((item) => (item.id === produto.id ? { ...item, qtd: item.qtd + 1 } : item)))
+    } else {
+      setCarrinho([...carrinho, { id: produto.id, qtd: 1 }])
+    }
+    mostrarAviso(`${produto.nome} adicionado!`)
+  }
+
+  function mudarQuantidade(id, mudanca) {
+    setCarrinho(
+      carrinho
+        .map((item) => (item.id === id ? { ...item, qtd: item.qtd + mudanca } : item))
+        .filter((item) => item.qtd > 0),
+    )
+  }
+
+  function remover(id) {
+    setCarrinho(carrinho.filter((item) => item.id !== id))
+  }
+
+  function esvaziar() {
+    setCarrinho([])
+  }
+
+  const totalItens = carrinho.reduce((soma, item) => soma + item.qtd, 0)
+
+  // Escolhe o que aparece na tela: "carregando", erro, ou a página normal
+  function conteudo() {
+    if (carregando) {
+      return (
+        <section className="painel entrada-fade">
+          <h2>Carregando o cardápio...</h2>
+        </section>
+      )
+    }
+
+    if (erroProdutos) {
+      return (
+        <section className="painel entrada-fade">
+          <h2>Ops! Não consegui carregar o cardápio</h2>
+          <p className="erro-form">{erroProdutos}</p>
+          <button className="botao grande" onClick={carregarProdutos}>
+            Tentar de novo
+          </button>
+        </section>
+      )
+    }
+
+    if (pagina === 'cardapio') {
+      return <Cardapio produtos={produtos} aoAdicionar={adicionar} />
+    }
+
+    return (
+      <Pedido
+        produtos={produtos}
+        carrinho={carrinho}
+        aoMudar={mudarQuantidade}
+        aoRemover={remover}
+        aoEsvaziar={esvaziar}
+        aoVoltar={() => setPagina('cardapio')}
+      />
+    )
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
+    <div className="app">
+      <header className="topo">
+        <img className="logo" src="/images/hamburguer.svg" alt="" />
         <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
+          <h1>Lanchonete Pixel</h1>
+          <p>Escolha, monte seu pedido e peça sem sair da mesa</p>
         </div>
+      </header>
+
+      <nav className="abas">
         <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          className={`aba ${pagina === 'cardapio' ? 'ativa' : ''}`}
+          onClick={() => setPagina('cardapio')}
         >
-          Count is {count}
+          Cardápio
         </button>
-      </section>
+        <button className={`aba ${pagina === 'pedido' ? 'ativa' : ''}`} onClick={() => setPagina('pedido')}>
+          Meu pedido
+          {totalItens > 0 && <span className="contador-aba">{totalItens}</span>}
+        </button>
+      </nav>
 
-      <div className="ticks"></div>
+      <main>{conteudo()}</main>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+      {/* key = id do aviso: cada aviso novo é um elemento novo e a animação toca de novo */}
+      {aviso && (
+        <div key={aviso.id} className="aviso">
+          {aviso.texto}
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      )}
+    </div>
   )
 }
 

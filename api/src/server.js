@@ -1,9 +1,13 @@
 import express from 'express'
 import produtos from './rotas/produtos.js'
 import pedidos from './rotas/pedidos.js'
+import cors from 'cors'
 
 const app = express()
 const PORTA = process.env.PORT || 3001
+
+//Só o nosso front-end pode chamar a API pelo navegador (CORS)
+app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:5173' }))
 
 //Entender JSON no corpo das requisições
 app.use(express.json())
