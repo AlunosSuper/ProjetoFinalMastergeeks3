@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import { mesas, dinheiro } from '../dados'
+import { enviarPedido } from '../api'
 import ItemPedido from './ItemPedido'
+import StatusPedido from './StatusPedido'
 
 function Pedido({ produtos, carrinho, aoMudar, aoRemover, aoEsvaziar, aoVoltar }) {
   const [nome, setNome] = useState('')
   const [mesa, setMesa] = useState(mesas[0])
   const [recibo, setRecibo] = useState(null) // fica preenchido depois de enviar o pedido
+  const [enviando, setEnviando] = useState(false) // true enquanto o pedido está sendo enviado
+  const [erro, setErro] = useState('') // guarda o erro caso o envio falhe
 
   // Junta cada item do carrinho (id + qtd) com os dados do produto que vieram da API.
   // Se algum produto saiu do cardápio, o filter tira ele da lista.
@@ -15,12 +19,25 @@ function Pedido({ produtos, carrinho, aoMudar, aoRemover, aoEsvaziar, aoVoltar }
   const total = itens.reduce((soma, item) => soma + item.produto.preco * item.qtd, 0)
   const quantidade = itens.reduce((soma, item) => soma + item.qtd, 0)
 
-  function enviar(evento) {
+  async function enviar(evento) {
     evento.preventDefault()
-    if (nome.trim() === '') return
-    // Guarda os dados do recibo ANTES de esvaziar o carrinho
-    setRecibo({ senha: Math.floor(Math.random() * 900) + 100, nome: nome.trim(), mesa, total, quantidade })
-    aoEsvaziar()
+    if (nome.trim() === '' || enviando) return
+    setEnviando(true)
+    setErro('')
+    try {
+      // Mandamos só id e qtd: o servidor descobre os preços sozinho
+      const pedido = await enviarPedido({
+        nome: nome.trim(),
+        mesa,
+        itens: itens.map((item) => ({ id: item.id, qtd: item.qtd })),
+      })
+      setRecibo(pedido)
+      aoEsvaziar()
+    } catch (e) {
+      setErro(e.message)
+    } finally {
+      setEnviando(false)
+    }
   }
 
   if (recibo) {
@@ -31,8 +48,9 @@ function Pedido({ produtos, carrinho, aoMudar, aoRemover, aoEsvaziar, aoVoltar }
         <p className="senha">
           Senha <strong>{recibo.senha}</strong>
         </p>
+        <StatusPedido id={recibo.id} />
         <p>
-          {recibo.quantidade} item(ns) · mesa {recibo.mesa} · total {dinheiro(recibo.total)}
+          {recibo.itens.reduce((soma, item) => soma + item.qtd, 0)} item(ns) · mesa {recibo.mesa} · total {dinheiro(recibo.total)}
         </p>
         <button className="botao grande" onClick={aoVoltar}>
           Fazer outro pedido
@@ -87,12 +105,14 @@ function Pedido({ produtos, carrinho, aoMudar, aoRemover, aoEsvaziar, aoVoltar }
           ))}
         </select>
 
+        {erro && <p className="erro-form">{erro}</p>}
+
         <div className="acoes">
           <button type="button" className="botao perigo" onClick={aoEsvaziar}>
             Limpar pedido
           </button>
-          <button type="submit" className="botao grande">
-            Enviar pedido
+          <button type="submit" className="botao grande" disabled={enviando}>
+            {enviando ? 'Enviando...' : 'Enviar pedido'}
           </button>
         </div>
       </form>

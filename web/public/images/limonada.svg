@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img"><title>Limonada</title><ellipse cx="300" cy="548" rx="190" ry="20" fill="#4b2a14" opacity="0.14"/>
+<path d="M172 190 H428 L400 505 Q300 530 200 505 Z" fill="#fff" fill-opacity="0.55" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M184 250 H416 L396 497 Q300 520 204 497 Z" fill="#e7f27a"/>
+<rect x="215" y="290" width="64" height="64" rx="14" fill="#fff" fill-opacity="0.65" stroke="#fff" stroke-width="5" transform="rotate(-12 247 322)"/><rect x="305" y="330" width="64" height="64" rx="14" fill="#fff" fill-opacity="0.65" stroke="#fff" stroke-width="5" transform="rotate(14 337 362)"/><rect x="235" y="395" width="64" height="64" rx="14" fill="#fff" fill-opacity="0.65" stroke="#fff" stroke-width="5" transform="rotate(8 267 427)"/>
+<path d="M172 190 H428 L400 505 Q300 530 200 505 Z" fill="none" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M205 220 L218 440" stroke="#fff" stroke-width="12" stroke-linecap="round" opacity="0.5"/>
+<path d="M290 175 q-10 -70 70 -100 q30 70 -70 100 Z" fill="#4fae4b" stroke="#4b2a14" stroke-width="6" stroke-linejoin="round"/>
+<circle cx="150" cy="195" r="60" fill="#ffe94d" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/><path d="M150 195 L193.7 180.8 A46 46 0 0 1 193.7 209.2 Z" fill="#fff59b"/><path d="M150 195 L191.0 215.9 A46 46 0 0 1 170.9 236.0 Z" fill="#fff59b"/><path d="M150 195 L164.2 238.7 A46 46 0 0 1 135.8 238.7 Z" fill="#fff59b"/><path d="M150 195 L129.1 236.0 A46 46 0 0 1 109.0 215.9 Z" fill="#fff59b"/><path d="M150 195 L106.3 209.2 A46 46 0 0 1 106.3 180.8 Z" fill="#fff59b"/><path d="M150 195 L109.0 174.1 A46 46 0 0 1 129.1 154.0 Z" fill="#fff59b"/><path d="M150 195 L135.8 151.3 A46 46 0 0 1 164.2 151.3 Z" fill="#fff59b"/><path d="M150 195 L170.9 154.0 A46 46 0 0 1 191.0 174.1 Z" fill="#fff59b"/>
+</svg>

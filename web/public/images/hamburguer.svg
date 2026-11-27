@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img"><title>Hambúrguer</title><ellipse cx="300" cy="548" rx="190" ry="20" fill="#4b2a14" opacity="0.14"/>
+<path d="M105 450 H495 Q495 520 440 520 H160 Q105 520 105 450 Z" fill="#e8a33d" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="95" y="385" width="410" height="62" rx="30" fill="#7a3f1c" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M105 385 H495 L462 430 L428 390 L392 436 L356 390 H105 Z" fill="#ffcf33" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M95 350 q25 -28 50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 v36 H95 Z" fill="#4fae4b" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="110" y="318" width="380" height="40" rx="20" fill="#e63946" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M90 322 C90 150 510 150 510 322 Z" fill="#f2b34a" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="200" cy="230" rx="13" ry="7" fill="#fff3d1" transform="rotate(-20 200 230)"/><ellipse cx="280" cy="200" rx="13" ry="7" fill="#fff3d1" transform="rotate(10 280 200)"/><ellipse cx="360" cy="225" rx="13" ry="7" fill="#fff3d1" transform="rotate(25 360 225)"/><ellipse cx="430" cy="265" rx="13" ry="7" fill="#fff3d1" transform="rotate(-10 430 265)"/><ellipse cx="160" cy="285" rx="13" ry="7" fill="#fff3d1" transform="rotate(15 160 285)"/><ellipse cx="310" cy="265" rx="13" ry="7" fill="#fff3d1" transform="rotate(-5 310 265)"/>
+<path d="M150 235 C170 190 220 170 260 165" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity="0.35"/>
+</svg>

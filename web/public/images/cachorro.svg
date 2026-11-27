@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img"><title>Cachorro-quente</title><ellipse cx="300" cy="548" rx="190" ry="20" fill="#4b2a14" opacity="0.14"/>
+<rect x="75" y="300" width="450" height="130" rx="62" fill="#e8a33d" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="55" y="262" width="490" height="86" rx="43" fill="#c8402f" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M95 305 q20 -34 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#ffcf33" stroke-width="14" stroke-linecap="round"/>
+<path d="M95 285 q20 -26 40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0 t40 0" fill="none" stroke="#e63946" stroke-width="10" stroke-linecap="round" opacity="0.0"/>
+<path d="M90 345 H510 V375 Q510 432 450 432 H150 Q90 432 90 375 Z" fill="#f2b34a" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M130 275 H300" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity="0.35"/>
+</svg>

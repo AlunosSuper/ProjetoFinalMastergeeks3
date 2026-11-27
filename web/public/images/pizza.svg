@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img"><title>Fatia de pizza</title><ellipse cx="300" cy="548" rx="190" ry="20" fill="#4b2a14" opacity="0.14"/>
+<path d="M115 200 L485 200 L300 515 Z" fill="#ffcf33" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="95" y="150" width="410" height="62" rx="31" fill="#e0a458" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="230" cy="255" r="36" fill="#c8402f" stroke="#4b2a14" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><circle cx="360" cy="250" r="34" fill="#c8402f" stroke="#4b2a14" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><circle cx="300" cy="355" r="34" fill="#c8402f" stroke="#4b2a14" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><circle cx="265" cy="440" r="24" fill="#c8402f" stroke="#4b2a14" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M312 292 q10 -26 28 -12 q-6 22 -28 12 Z" fill="#4fae4b" stroke="#4b2a14" stroke-width="5"/>
+<path d="M185 330 q10 -26 28 -12 q-6 22 -28 12 Z" fill="#4fae4b" stroke="#4b2a14" stroke-width="5"/>
+<path d="M150 170 H250" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity="0.4"/>
+</svg>

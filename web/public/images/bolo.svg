@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img"><title>Fatia de bolo</title><ellipse cx="300" cy="548" rx="190" ry="20" fill="#4b2a14" opacity="0.14"/>
+<path d="M145 290 L460 290 L500 240 L190 240 Z" fill="#ffe3ef" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="145" y="290" width="315" height="210" rx="10" fill="#8d5524" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="145" y="345" width="315" height="34" fill="#fff0d6" stroke="#4b2a14" stroke-width="8"/>
+<rect x="145" y="425" width="315" height="34" fill="#fff0d6" stroke="#4b2a14" stroke-width="8"/>
+<path d="M460 290 L500 240 L500 450 L460 500 Z" fill="#6f3f17" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M145 290 q26 44 52 0 t52 0 t52 0 t52 0 t52 0" fill="#ffe3ef" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round"/>
+<path d="M300 205 q30 -70 78 -40 q10 50 -50 90 q-50 -20 -28 -50 Z" fill="#e63946" stroke="#4b2a14" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M330 165 q-4 -26 18 -38" fill="none" stroke="#4fae4b" stroke-width="9" stroke-linecap="round"/>
+</svg>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Cardapio from './components/Cardapio'
 import Pedido from './components/Pedido'
+import Cozinha from './components/Cozinha'
 import { buscarProdutos } from './api'
 
 function App() {
@@ -85,6 +86,7 @@ function App() {
 
   // Escolhe o que aparece na tela: "carregando", erro, ou a página normal
   function conteudo() {
+    if (pagina === 'cozinha') return <Cozinha />
     if (carregando) {
       return (
         <section className="painel entrada-fade">
@@ -142,8 +144,11 @@ function App() {
           Meu pedido
           {totalItens > 0 && <span className="contador-aba">{totalItens}</span>}
         </button>
+        <button className={`aba ${pagina === 'cozinha' ? 'ativa' : ''}`} onClick={() => setPagina('cozinha')}>
+          Cozinha
+        </button>
       </nav>
-
+      
       <main>{conteudo()}</main>
 
       {/* key = id do aviso: cada aviso novo é um elemento novo e a animação toca de novo */}

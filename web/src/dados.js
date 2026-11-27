@@ -8,3 +8,14 @@ export const mesas = [1, 2, 3, 4, 5, 6, 7, 8]
 export function dinheiro(valor) {
     return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 }
+
+// Andamento de um pedido, na ordem em que acontece
+export const STATUS = ['recebido', 'preparando', 'pronto', 'entregue']
+
+// Texto bonito para cada status
+export const ROTULOS = {
+    recebido: 'Pedido recebido',
+    preparando: 'Preparando',
+    pronto: 'Pronto! Pode retirar',
+    entregue: 'Entregue',
+}
